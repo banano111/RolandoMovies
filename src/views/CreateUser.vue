@@ -4,43 +4,49 @@ import axios from "axios";
 import { useToast } from "vue-toastification";
 
 export default {
-
     setup() {
       // Get toast interface
       const toast = useToast();
       // Make it available inside methods
       return { toast }
     },
-
+    
     data() {
         return {
+            name: "",
+            last_name: "",
             email: "",
             password: ""
         }
     },
 
     methods:{
-        login(){
+        createUser(){
             let user = {
+                "name": this.name,
+                "last_name": this.last_name,
                 "email": this.email,
                 "password":this.password
             }
 
             console.log(user)
-            axios.post("http://localhost:8000/login/auth", user)
+
+            axios.post("http://localhost:8000/login/register", user)
             .then(response => {
                 console.log(response.data)
                 
-                let { is_auth } = response.data
+                let { user_created } = response.data
 
-                if(is_auth){
-                  this.toast.success("Inicio de Sesion Valido")
-                  this.$router.push('/dashboard')
+                if(user_created){
+                  this.toast.success("Usuario Creado")
+                  this.$router.push('/login')
                 }
                 else{
-                  this.toast.error("Error al Iniciar Sesión Intente de Nuevo")
+                  this.toast.error("Error al Crear el Usuario Intente de Nuevo")
                   this.email = ""
                   this.password = ""
+                  this.name = ""
+                  this.last_name = ""
                 }
             })
             .catch(error =>{
@@ -60,23 +66,27 @@ export default {
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Iniciar Sesión en <strong>Rolando Movies</strong></h3>
+            <h3>Crear Cuenta en <strong>Rolando Movies</strong></h3>
             <p class="mb-4">Donde las Series Nunca Se Te Olvidaran.</p>
-            <form v-on:submit.prevent="login">
+            <form v-on:submit.prevent="createUser">
+              <div class="form-group first mb-4">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="name" v-model="name" required>
+              </div>
+              <div class="form-group first mb-4">
+                <label for="last_name">Apellidos</label>
+                <input type="text" class="form-control" id="last_name" v-model="last_name" required>
+              </div>
               <div class="form-group first mb-4">
                 <label for="username">Correo</label>
                 <input type="text" class="form-control" id="username" v-model="email" required>
               </div>
-              <div class="form-group last mb-3">
+              <div class="form-group last mb-5">
                 <label for="password">Contraseña</label>
                 <input type="password" class="form-control" id="password" v-model="password" required>
               </div>
-              
-              <div class="d-flex mb-5 align-items-center">
-                <span class="ml-auto"><router-link class="forgot-pass" to="/createUser">Crear Cuenta</router-link></span>
-              </div>
               <div class="d-grid d">
-                <input type="submit" value="Iniciar Sesión" class="btn btn-primary">  
+                <input type="submit" value="Crear Cuenta" class="btn btn-primary">  
               </div> 
             </form>
           </div>
