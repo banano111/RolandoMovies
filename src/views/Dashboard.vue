@@ -1,7 +1,4 @@
 <script setup>
-import SideBar from '../components/SideBar.vue';
-import Carrousel from '../components/Carrousel.vue';
-import ContinuarViendo from '../components/ContinuarViendo.vue';
 
 </script>
 
