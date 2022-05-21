@@ -1,4 +1,6 @@
 <script setup>
+import SideBar from '../components/SideBar.vue';
+import ContinuarViendo from '../components/ContinuarViendo.vue';
 
 </script>
 
@@ -15,7 +17,9 @@
             <img class="rounded w-25 h-25" src="../assets/D4.png" alt="">
         </div>
         
-        <ContinuarViendo/>
+        <div class="mt-5">
+            <ContinuarViendo/>
+        </div>
         
         <i class="bi bi-tags-fill mx-2 text-success align-middle"></i>
         <span class="h4 align-middle">Categorias</span>

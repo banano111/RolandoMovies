@@ -1,8 +1,6 @@
 <template>
-    <div class="mt-5">
-        <i class="bi bi-pin-fill mx-2 text-danger align-middle"></i>
-        <span class="h4 align-middle">Continuar Viendo</span>
-    </div>
+    <i class="bi bi-pin-fill mx-2 text-danger align-middle"></i>
+    <span class="h4 align-middle">Continuar Viendo</span>
     <div class="row mt-3">
         <div class="col-4">
             <div class="card" style="width: 18rem;">
