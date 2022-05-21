@@ -60,7 +60,7 @@ export default {
 </script>
 
 <template>
-  <div class="d-lg-flex half">
+  <div class="d-lg-flex half vh-100 vw-100">
     <div class="bg order-1 order-md-2" style="background-image: url('https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');"></div>
     <div class="contents order-2 order-md-1">
       <div class="container">
