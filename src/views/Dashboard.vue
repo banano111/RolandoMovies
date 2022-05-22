@@ -33,7 +33,7 @@ import ContinuarViendo from '../components/ContinuarViendo.vue';
     </div>
 </template>
 
-<style>
+<style scoped>
 .dashboard {
     margin-top: 2.5rem;
     margin-left: 3rem;

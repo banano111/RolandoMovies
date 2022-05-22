@@ -96,7 +96,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
   body {
     font-family: "Roboto", sans-serif;
     background-color: #fff; }
