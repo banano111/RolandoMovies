@@ -2,14 +2,17 @@
 
 import axios from "axios";
 import { useToast } from "vue-toastification";
+import { userStore } from "../stores/user";
 
 export default {
 
     setup() {
       // Get toast interface
       const toast = useToast();
+
+      const store = userStore();
       // Make it available inside methods
-      return { toast }
+      return { toast, store }
     },
 
     data() {
@@ -17,6 +20,10 @@ export default {
             email: "",
             password: ""
         }
+    },
+
+    props: {
+      userauth: Boolean
     },
 
     methods:{
@@ -35,6 +42,9 @@ export default {
 
                 if(is_auth){
                   this.toast.success("Inicio de Sesion Valido")
+
+                  this.store.setLoginValues(response.data)
+                  
                   this.$router.push('/dashboard')
                 }
                 else{
@@ -45,7 +55,7 @@ export default {
             })
             .catch(error =>{
               console.log(error)
-              app.$toast.error('Error en el Servidor')
+              this.toast.error("Error en el Servidor")
             })
         }
     }

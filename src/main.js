@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia';
+
 import App from './App.vue'
 import router from './router'
 import Toast from "vue-toastification";
@@ -13,7 +15,8 @@ import Carrousel from "./components/Carrousel.vue"
 const app = createApp(App)
 
 app.use(router)
-app.use(Toast);
+app.use(Toast)
+app.use(createPinia())
 
 app.component('SideBar', SideBar)
 app.component('Pagination', Pagination)

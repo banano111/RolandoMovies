@@ -1,9 +1,16 @@
 <script>
-    export default {
-        props: {
-            tab: Number
-        }
-    }
+import { userStore } from "../stores/user";
+ 
+ export default{
+     
+     setup() {
+         const store = userStore();
+         // Make it available inside methods
+         return { store }
+     },
+ }
+
+
 </script>
 
 
@@ -11,7 +18,8 @@
     <main class="d-flex flex-nowrap vh-100">
         <h1 class="visually-hidden">Sidebars examples</h1>
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="/dashboard"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <img src="https://cdn-icons-png.flaticon.com/512/3163/3163508.png" alt="Logo" class="logo">
                 <span class="fs-4">Rolando Movies</span>
             </a>
@@ -64,7 +72,7 @@
                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png" alt="" width="32" height="32"
                         class="rounded-circle me-2">
-                    <strong>{Usuario}</strong>
+                    <strong>{{store.name}} {{store.last_name}}</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="#">Perfil</a></li>

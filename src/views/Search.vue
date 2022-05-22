@@ -4,8 +4,6 @@ import Pagination from '../components/Pagination.vue';
 </script>
 
 <template>
-
-    <SideBar />
     <div class="dashboard">
 
         <div class="bg-secondary mb-4 text-white p-2 d-flex justify-content-between align-items-center">

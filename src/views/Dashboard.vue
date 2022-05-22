@@ -5,7 +5,6 @@ import ContinuarViendo from '../components/ContinuarViendo.vue';
 </script>
 
 <template>
- <SideBar/>
  <div class="dashboard">
         <i class="bi bi-star-fill mx-2 text-warning align-middle"></i>
         <span class="h4 align-middle">Series Populares</span>

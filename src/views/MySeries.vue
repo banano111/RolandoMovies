@@ -1,13 +1,10 @@
 <script setup>
-import SideBar from '../components/SideBar.vue';
 import ContinuarViendo from '../components/ContinuarViendo.vue';
 
 </script>
 
 
 <template>
-    
-    <SideBar/>
     <div class="dashboard">
         <ContinuarViendo/>
         <i class="bi bi-star-fill mx-2 text-warning align-middle"></i>

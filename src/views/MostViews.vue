@@ -1,13 +1,8 @@
 <script setup>
-import SideBar from '../components/SideBar.vue';
-import Pagination from '../components/Pagination.vue';
 import Carrousel from '../components/Carrousel.vue';
 </script>
 
 <template>
-
-    <SideBar/>
-
     <div class="dashboard">
         
         <div class="p-2">
