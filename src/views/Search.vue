@@ -1,6 +1,60 @@
-<script setup>
+<script>
 import SideBar from '../components/SideBar.vue';
 import Pagination from '../components/Pagination.vue';
+import { seriesStore } from "../stores/series";
+
+export default {
+
+    setup() {
+        const store = seriesStore();
+
+        return { store }
+    },
+
+    data() {
+        return {
+            series: {},
+            is_ready: false,
+            filter_value: 0
+        }
+    },
+
+    methods: {
+        setFilter(value) {
+            this.filter_value = value
+        }
+    },
+
+    mounted() {
+        this.series = this.store.getSeries()
+        this.is_ready = true
+    },
+
+    computed: {
+        filtroTotal() {
+            if (this.filter_value == 1) {
+                return this.series.filter(serie => serie.genero == "Accion")
+            }
+
+            else if (this.filter_value == 2) {
+                return this.series.filter(serie => serie.genero == "Comedia")
+            }
+
+            else if (this.filter_value == 3) {
+                return this.series.filter(serie => serie.genero == "Anime")
+            }
+
+            else if (this.filter_value == 4) {
+                return this.series.filter(serie => serie.genero == "Terror")
+            }
+            else {
+                return this.series
+            }
+        }
+    }
+
+}
+
 </script>
 
 <template>
@@ -14,79 +68,34 @@ import Pagination from '../components/Pagination.vue';
                     Género de la Serie
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Acción</a></li>
-                    <li><a class="dropdown-item" href="#">Comedia</a></li>
-                    <li><a class="dropdown-item" href="#">Anime</a></li>
-                    <li><a class="dropdown-item" href="#">Terror</a></li>
+                    <li class="dropdown-item" @click="setFilter(1)">Accion</li>
+                    <li class="dropdown-item" @click="setFilter(2)">Comedia</li>
+                    <li class="dropdown-item" @click="setFilter(3)">Anime</li>
+                    <li class="dropdown-item" @click="setFilter(4)">Terror</li>
+                    <li class="dropdown-item" @click="setFilter(0)">Todos</li>
                 </ul>
             </div>
         </div>
-
-
-        <div class="row row-cols-3">
-            <div class="col">
+        <div class="row row-cols-3" v-if="is_ready">
+            <div v-for="serie in filtroTotal" class="col">
                 <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure">
-                    <img src="../assets/D1.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption text-center text-black">{Nombre de la Serie}</figcaption>
+                    <img v-bind:src="serie.imagen" class="figure-img img-fluid rounded" :key="serie.id_serie"
+                        alt="serie.nombre_serie">
+                    <figcaption class="figure-caption text-center text-black">{{ serie.nombre_serie }}</figcaption>
                 </figure>
             </div>
         </div>
-        
+        <div v-else class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
         <div class="d-flex justify-content-center mt-1s">
-            <Pagination/>
+            <Pagination />
         </div>
 
     </div>
 
-   
+
 
 </template>
 

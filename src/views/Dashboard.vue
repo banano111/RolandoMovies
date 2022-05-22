@@ -22,7 +22,7 @@ export default {
     },
 
     methods: {
-       async seriesService() {
+        async seriesService() {
 
             let seriesResponse = {}
             let response = await getSeries()
@@ -59,6 +59,10 @@ export default {
         popularSeries() {
             return this.series.filter(serie => serie.is_popular == 1)
         }
+    },
+
+    mounted() {
+        this.seriesService()
     }
 }
 
@@ -70,7 +74,8 @@ export default {
         <span class="h4 align-middle">Series Populares</span>
 
         <div class="mt-3 d-flex justify-content-between" v-if="is_ready">
-            <img v-for="serie in popularSeries" class="rounded w-25 h-25" v-bind:src="serie.imagen" alt="" :key="serie.id_serie">
+            <img v-for="serie in popularSeries" class="rounded w-25 h-25" v-bind:src="serie.imagen" alt=""
+                :key="serie.id_serie">
         </div>
 
         <div class="spinner-border text-primary" role="status" v-else>
@@ -87,7 +92,6 @@ export default {
 
         <div class="mt-3 d-flex justify-content-between">
             <img class="rounded w-25 h-25" src="../assets/G1.jpg" alt="">
-            <button @click="seriesService()">Hola</button>
             <img class="rounded w-25 h-25" src="../assets/G2.jpg" alt="">
             <img class="rounded w-25 h-25" src="../assets/G3.jpg" alt="">
             <img class="rounded w-25 h-25" src="../assets/G4.jpg" alt="">
