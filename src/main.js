@@ -8,6 +8,7 @@ import "vue-toastification/dist/index.css";
 import SideBar from "./components/SideBar.vue"
 import ContinuarViendo from "./components/ContinuarViendo.vue"
 import Pagination from "./components/Pagination.vue"
+import Carrousel from "./components/Carrousel.vue"
 
 const app = createApp(App)
 
@@ -16,6 +17,7 @@ app.use(Toast);
 
 app.component('SideBar', SideBar)
 app.component('Pagination', Pagination)
+app.component('Carrousel', Carrousel)
 app.component('ContinuarViendo', ContinuarViendo)
 
 app.mount('#app')
