@@ -1,13 +1,23 @@
 <script>
 import { userStore } from "../stores/user";
+import { useToast } from "vue-toastification";
  
  export default{
      
      setup() {
          const store = userStore();
+         const toast = useToast();
          // Make it available inside methods
-         return { store }
+         return { store, toast }
      },
+
+     methods: {
+         logout(){
+             this.store.$reset()
+             this.toast.success("Sesión Cerrada con Éxito")
+             this.$router.push('/login')
+         }
+     }
  }
 
 
@@ -81,7 +91,7 @@ import { userStore } from "../stores/user";
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                    <li><a class="dropdown-item" @click="logout" >Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>

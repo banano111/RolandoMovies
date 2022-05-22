@@ -21,11 +21,7 @@ export default {
             password: ""
         }
     },
-
-    props: {
-      userauth: Boolean
-    },
-
+    
     methods:{
         login(){
             let user = {

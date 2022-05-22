@@ -3,9 +3,9 @@ import { defineStore } from "pinia";
 export const userStore = defineStore("user", {
     state: () => {
         return {
-            name: "Test",
-            last_name: "",
-            email: "",
+            name: String,
+            last_name: String,
+            email: String,
             user_id: Number,
             is_auth: false
         }
