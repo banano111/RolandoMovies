@@ -36,7 +36,7 @@ import { useToast } from "vue-toastification";
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <router-link class="nav-link link-light active" to="/dashboard" aria-current="page">
+                    <router-link class="nav-link link-light" to="/dashboard" aria-current="page">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-house-door mx-1" viewBox="0 0 16 16">
                             <path

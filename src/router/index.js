@@ -7,8 +7,14 @@ import Search from '@/views/Search.vue'
 import MostViews from '@/views/MostViews.vue'
 
 const router = createRouter({
+  linkActiveClass: "active",
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'default',
+      component: Login
+    },
     {
       path: '/login',
       name: 'login',
