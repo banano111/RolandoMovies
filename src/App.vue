@@ -1,5 +1,4 @@
 <script >
-import { watch } from 'vue';
 import { RouterView } from 'vue-router'
 import SideBar from './components/SideBar.vue';
 import { userStore } from "./stores/user";
