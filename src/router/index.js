@@ -5,6 +5,7 @@ import Dashboard from '@/views/Dashboard.vue'
 import MySeries from '@/views/MySeries.vue'
 import Search from '@/views/Search.vue'
 import MostViews from '@/views/MostViews.vue'
+import SerieDetail from '@/views/SerieDetail.vue'
 
 const router = createRouter({
   linkActiveClass: "active",
@@ -36,7 +37,7 @@ const router = createRouter({
       component: MySeries
     },
     {
-      path: '/search',
+      path: '/search/:id?',
       name: 'search',
       component: Search
     },
@@ -45,6 +46,12 @@ const router = createRouter({
       name: 'mostViews',
       component: MostViews
     },
+    {
+      path: '/series/:id',
+      name: 'seriesDetail',
+      component: SerieDetail
+    },
+
   ]
 })
 

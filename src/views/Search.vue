@@ -22,12 +22,25 @@ export default {
     methods: {
         setFilter(value) {
             this.filter_value = value
-        }
+        },
+
+        getSeriesDetail(id_serie){
+            this.$router.push("/series/" + id_serie)
+        },
     },
 
     mounted() {
         this.series = this.store.getSeries()
         this.is_ready = true
+
+        if(this.$route.params.id){
+            console.log("Lo recibi: " + this.$route.params.id)
+            this.filter_value = this.$route.params.id
+        }
+
+        else{
+            console.log("No lo Recibi")
+        }
     },
 
     computed: {
@@ -68,19 +81,19 @@ export default {
                     Género de la Serie
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li class="dropdown-item" @click="setFilter(1)">Accion</li>
-                    <li class="dropdown-item" @click="setFilter(2)">Comedia</li>
-                    <li class="dropdown-item" @click="setFilter(3)">Anime</li>
-                    <li class="dropdown-item" @click="setFilter(4)">Terror</li>
-                    <li class="dropdown-item" @click="setFilter(0)">Todos</li>
+                    <li class="dropdown-item click" @click="setFilter(1)">Accion</li>
+                    <li class="dropdown-item click" @click="setFilter(2)">Comedia</li>
+                    <li class="dropdown-item click" @click="setFilter(3)">Anime</li>
+                    <li class="dropdown-item click" @click="setFilter(4)">Terror</li>
+                    <li class="dropdown-item click" @click="setFilter(0)">Todos</li>
                 </ul>
             </div>
         </div>
         <div class="row row-cols-3" v-if="is_ready">
             <div v-for="serie in filtroTotal" class="col">
                 <figure class="figure">
-                    <img v-bind:src="serie.imagen" class="figure-img img-fluid rounded" :key="serie.id_serie"
-                        alt="serie.nombre_serie">
+                    <img v-bind:src="serie.imagen" class="figure-img img-fluid rounded click" :key="serie.id_serie"
+                        alt="serie.nombre_serie" @click="getSeriesDetail(serie.id_serie)">
                     <figcaption class="figure-caption text-center text-black">{{ serie.nombre_serie }}</figcaption>
                 </figure>
             </div>
@@ -104,5 +117,9 @@ export default {
     margin-top: 2.5rem;
     margin-left: 3rem;
     max-width: 70%;
+}
+
+.click{
+    cursor: pointer;
 }
 </style>
