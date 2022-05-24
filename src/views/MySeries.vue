@@ -52,7 +52,7 @@ export default {
         <span class="h4 align-middle">Mis Series</span>
 
         <div class="d-flex flex-row justify-content-between align-content-around flex-wrap">
-            <img v-for="serie in series" class="rounded w-25 h-25 mt-4" :src="serie.imagen" :alt="serie.nombre_serie"
+            <img v-for="serie in series" class="rounded w-25 h-25 mt-4 click" :src="serie.imagen" :alt="serie.nombre_serie"
                 :key="serie.id_serie" @click="getSeriesDetail(serie.id_serie)">
         </div>
     </div>
@@ -73,5 +73,8 @@ export default {
 
 .w-25 {
     width: 23% !important;
+}
+.click{
+    cursor: pointer;
 }
 </style>

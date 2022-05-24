@@ -10,9 +10,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <router-link to="/login" aria-current="page">
-                    <img src="https://i0.wp.com/www.thecosmiccircus.com/wp-content/uploads/2022/02/moon-knight-clues.jpg?fit=1920,1080&ssl=1" class="d-block w-100" alt="...">
-                </router-link>
+                <img src="https://i0.wp.com/www.thecosmiccircus.com/wp-content/uploads/2022/02/moon-knight-clues.jpg?fit=1920,1080&ssl=1" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Moon Knight</h5>
                     <p>Disponible en Disney Plus</p>

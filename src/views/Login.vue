@@ -40,6 +40,8 @@ export default {
                   this.toast.success("Inicio de Sesion Valido")
 
                   this.store.setLoginValues(response.data)
+
+                  localStorage.user_id = response.data.user_id
                   
                   this.$router.push('/dashboard')
                 }

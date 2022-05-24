@@ -17,6 +17,12 @@ export default {
         }
     },
 
+    methods: {
+        getSeriesDetail(id_serie) {
+            this.$router.push("/series/" + id_serie)
+        },
+    },
+
     mounted() {
         this.series = this.store.getSeries()
         this.is_ready = true
@@ -45,11 +51,11 @@ export default {
         <i class="bi bi-star-fill text-warning align-middle"></i>
         <i class="bi bi-star-fill text-warning align-middle"></i>
         <i class="bi bi-star-fill me-2 text-warning align-middle"></i>
-        <span class="h4 align-middle">5 Estrellas</span>
+        <span class="h4 align-middle">5 Estrellass</span>
 
         <div class="mt-3 d-flex justify-content-between" v-if="is_ready">
-            <img v-for="serie in popularSeries" class="rounded w-25 h-25" v-bind:src="serie.imagen" alt=""
-                :key="serie.id_serie">
+            <img v-for="serie in popularSeries" class="rounded w-25 h-25 click" v-bind:src="serie.imagen" alt=""
+                :key="serie.id_serie" @click="getSeriesDetail(serie.id_serie)">
         </div>
 
         <div class="spinner-border text-primary" role="status" v-else>
@@ -69,5 +75,9 @@ export default {
 
 .w-25 {
     width: 23% !important;
+}
+
+.click{
+    cursor: pointer;
 }
 </style>

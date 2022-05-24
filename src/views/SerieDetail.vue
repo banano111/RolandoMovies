@@ -19,7 +19,8 @@ export default {
             series: {},
             is_ready: false,
             serie: {},
-            imagen: String
+            imagen: String,
+            nombre: String
         }
     },
 
@@ -56,7 +57,37 @@ export default {
               console.log(error)
               this.toast.error("Ya tienes Esta Serie Agregada")
             })
-        }
+        },
+
+        addWatchingUser(){
+            let new_serie_watching = {
+                "id_usuario": this.store2.user_id,
+                "id_serie": this.$route.params.id,
+                "nombre_serie": this.nombre,
+                "imagen": this.imagen,
+                "temporada": Math.floor(Math.random() * 5),
+                "capitulo": Math.floor(Math.random() * 10) + 5,
+                
+            }
+            console.log(new_serie_watching)
+            axios.post("http://localhost:8000/series/watching", new_serie_watching)
+            .then(response => {
+                console.log(response.data)
+                
+                let { userSeries_added } = response.data
+
+                if(userSeries_added){
+                  this.toast.success("Se agrego A Continuar Viendo Correctamente")
+                }
+                else{
+                  this.toast.error("Error al Agregar la Serie")
+                }
+            })
+            .catch(error =>{
+              console.log(error)
+              this.toast.error("Ya tienes Esta Serie en Continuar Viendo")
+            })
+        },
     },
 
     mounted() {
@@ -65,6 +96,7 @@ export default {
         this.serie = this.series.filter(serie => serie.id_serie == this.$route.params.id)
         this.serie.map(serie =>{
             this.imagen = serie.imagen
+            this.nombre = serie.nombre_serie
         })
         
     },
@@ -83,7 +115,7 @@ export default {
                 <button class="btn btn-success me-3" @click="addSeriesUser()">
                     <i class="bi bi-star-fill text-warning me-2"></i>Agregar a Mis Series
                 </button>
-                <button class="btn btn-success">
+                <button class="btn btn-success" @click="addWatchingUser()">
                     <i class="bi bi-pin-fill text-danger me-2"></i>Continuar Viendo
                 </button>
             </div>
